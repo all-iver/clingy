@@ -1,7 +1,7 @@
 Clingy
 ------
 
-Clingy is a general purpose attachments/relationships library for Unity (https://unity3d.com).  An attachment could be something like a physics joint, an object following another object, a parent/child relationship, or your own custom definition.  Clingy helps you create and manage these types of attachments at runtime.  In particular, Unity's pattern of creating physics joint components in the editor is not very helpful when you want to create and destroy joints at runtime.  Clingy lets you configure the type of joint you want in the editor, but create the joint components themselves at runtime.
+Clingy is a general purpose attachments/relationships library for Unity (https://unity3d.com).  An attachment could be something like a physics joint, an object following another object, a parent/child relationship, or your own custom definition.  Clingy helps you create and manage these types of attachments at runtime.  For instance, you could use Clingy to chain a group of objects together using Physics joints, allow the player to pick up various weapons, position objects during base building, or just have objects follow each other around.  In particular, Unity's pattern of creating physics joint components in the editor is not very helpful when you want to create and destroy joints at runtime.  Clingy lets you configure the type of joint you want in the editor, but create the joint components themselves at runtime.
 
 Clingy also lets you write code to transition objects in and out of attachments, and define attach points on objects to define values for anchors and rotations, etc.  
 
