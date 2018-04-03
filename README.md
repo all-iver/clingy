@@ -48,7 +48,7 @@ Each object should be an `AttachObject` which specifies a `GameObject` and the c
 Transitioners
 -----
 
-Often when attaching objects at runtime, an object will need to be prepared in some way.  For instance, you may want a physics object to have its `Rigidbody` component removed while it is attached, and then restored after it is detached.  With Clingy, you can add a `Transitioner` to your `AttachStrategy` for this purpose.  This allows you to add custom code to transition an object in and out of an `Attachment` without having to modify the strategy itself.  You can specify a `Transitioner` per category, meaning that all objects in an `AttachStrategy` that share the same category in the strategy will also use the same `Transitioner`.
+Often when attaching objects at runtime, an object will need to be prepared in some way.  For instance, you may want a physics object to have its `Rigidbody` component removed while it is attached, and then restored after it is detached, or you may want the object to tween over to its starting position before anything happens.  With Clingy, you can add a `Transitioner` to your `AttachStrategy` for this purpose.  This allows you to add custom code to transition an object in and out of an `Attachment` without having to modify the strategy itself.  You can specify a `Transitioner` per category, meaning that all objects in an `AttachStrategy` that share the same category in the strategy will also use the same `Transitioner`.
 
 Clingy comes with a built-in `FlexibleTransitioner` that is able to do a range of common useful things, but for anything complicated you'll want to create your own custom transition code by subclassing `Transitioner` (like `AttachStrategy`, `Transitioner` is a subclass of `ScriptableObject`).
 
@@ -66,7 +66,7 @@ A `Param` is not limited to just positions and rotations - it can also be a `Col
 Attach Points
 -----
 
-An `AttachPoint`'s job is to provide `Params` for objects in an `Attachment`.  For instance, the object may specify positions and rotations relative to itself that tell an `AttachStrategy` how to do its job.
+An `AttachPoint`'s job is to provide `Params` for objects in an `Attachment`.  For instance, the object may specify positions and rotations relative to itself that tell an `AttachStrategy` how to do its job.  An `AttachPoint` also re-broadcasts `Attachment` events, so if you want to get notified whenever anything attaches to a certain object, you can use an `AttachPoint` for that.
 
 An `AttachPoint` can also provide `Params` for other objects in an `Attachment` besides the one the `AttachPoint` component is actually on.  For instance, when you include an object with a `GridAttachPoint` component in an `Attachment`, all other objects in the `Attachment` will have `Params` applied to them that represents their positions snapped to the grid defined by the first object.  Then the `AttachStrategy` can be configured to move the attaching objects to their snapped positions.  The result is that any object that attaches to the `GridAttachPoint` will be snapped to a grid.
 
@@ -78,3 +78,23 @@ Sprite Params
 An `AttachPoint` can use a different set of `Params` for each frame in a sprite animation.  To do so, go to `Assets->Create->Clingy->Sprite Params`.  Using this editor interface, you can define the `Params` you want to be applied for a given sprite.  That is to say, when an object's `SpriteRenderer` is using a certain sprite, the `AttachPoint` component on that object will return the `Params` you define.  Make sure you drag the `SpriteParams` to the `AttachPoint`.
 
 As an example, by using this interface you could have a sprite hold a sword in a different position depending on which frame the sprite's animation is using.
+
+Events
+-----
+
+Clingy broadcasts `Attachment`-related events and messages.  Clingy sends object-related messages using Unity's `SendMessage()`, so if you have a `MonoBehavior` on an object, just adding a function called `OnObjectConnected(AttachEventInfo info)` is enough to get notified of that object's participation in an `Attachment`.  Clingy also uses `UnityEvent` if you want to be more explicit, or if you want to get events about the `Attachment` as a whole.  You can subscribe to events from `Attachment.events`, or just get events about specific objects on `AttachPoint.events`.
+
+Event types are:
+
+* `OnWillAttach` - The `Attachment` will begin transitioning its objects in
+* `OnAttached` - The `Attachment` has become active (this says nothing about objects in the `Attachment` - they may still be transitioning in)
+* `OnWillDetach` - The `Attachment` will begin transitioning its objects out
+* `OnDetached` - The `Attachment` has fully detached and all objects have transitioned out
+* `OnConnected` - All objects in the `Attachment` are transitioned in and the strategy has fully connected them
+* `OnDisconnected` - At least one object in the `Attachment` is no longer connected by the strategy
+* `OnObjectWillJoin` - An object will begin transitioning in to the `Attachment`
+* `OnObjectWillConnect` - An object has finished transitioning in and will be connected by the strategy
+* `OnObjectConnected` - An object has been fully connected by the strategy
+* `OnObjectWillDisconnect` - An object will be disconnected by the strategy
+* `OnObjectWillLeave` - An object has been disconnected by the strategy and will transition out
+* `OnObjectLeft` - An object has fully transitioned out
