@@ -11,9 +11,12 @@ In code, Clingy works something like this:
 
 ```
 using SubC.Attachments;
-Attachment attachment = Clingy.AttachOneToOne(myStrategy, gameObject1, gameObject2);
-attachment.events.OnDisconnected.AddListener(eventInfo => { ... });
-attachment.objects.Set(new AttachObject(someGameObject, 0));
+Attachment attachment = Clingy.AttachChain(myChainStrategy, gameObject1, gameObject2);
+// get notified on the detached event
+attachment.events.OnDetached.AddListener(eventInfo => { Debug.Log("Detached!"); });
+// add a new object to the chain on the fly
+attachment.objects.Add(new AttachObject(someGameObject, 1));
+// time passes...
 attachment.Detach();
 ```
 
@@ -29,7 +32,7 @@ Attach Strategies
 
 An `AttachStrategy` does the actual work of connecting objects to each other.  Clingy has various strategies built in, or you can create custom ones by subclassing `AttachStrategy` (which is a subclass of `ScriptableObject`).
 
-There are built-in strategies for Physics (2D and 3D), Following and Parenting.  Each type has One-to-One, Many-to-One and Chain versions.  There is also a built-in symbolic strategy which does nothing, but still sends attachment-related events.
+There are built-in strategies for Physics (2D and 3D), Following and Parenting.  Each type has One-to-One, Many-to-One and Chain versions.  There is also a built-in Symbolic strategy which does nothing, but still sends attachment-related events.
 
 To use a built-in strategy, go to the `Assets->Create->Clingy` menu and configure it the way you want it.  Then either create an `Attacher` component in the editor or get a handle to the strategy in code and create a new `Attachment`:
 
