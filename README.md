@@ -38,9 +38,9 @@ To use a built-in strategy, go to the `Assets->Create->Clingy` menu and configur
 
 ```
 using SubC.Attachments;
-Attachment attachment = new Attachment(myStrategy, new AttachObject(gameObject1, 0)...);
+Attachment attachment = new Attachment(myStrategy, new AttachObject(gameObject1, 0), ...);
 attachment.Attach();
-// or use one of the Clingy.AttachX() convenience methods
+// or use one of the Clingy.Attach...() convenience methods
 ```
 
 Each object should be an `AttachObject` which specifies a `GameObject` and the category of the object within the `AttachStrategy` (i.e., the strategy might have one category for the Target object and another category for Follower objects).
