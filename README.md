@@ -82,7 +82,7 @@ As an example, by using this interface you could have a sprite hold a sword in a
 Events
 -----
 
-Clingy broadcasts `Attachment`-related events and messages.  Clingy sends object-related messages using Unity's `SendMessage()`, so if you have a `MonoBehavior` on an object, just adding a function called `OnObjectConnected(AttachEventInfo info)` is enough to get notified of that object's participation in an `Attachment`.  Clingy also uses `UnityEvent` if you want to be more explicit, or if you want to get events about the `Attachment` as a whole.  You can subscribe to events from `Attachment.events`, or just get events about specific objects on `AttachPoint.events`.
+Clingy broadcasts `Attachment`-related events and messages.  Clingy sends object-related messages using Unity's `SendMessage()`, so if you have a `MonoBehavior` on an object, just adding a function called `OnObjectConnected(AttachEventInfo info)` is enough to get notified of that object's participation in an `Attachment`.  Clingy also uses `UnityEvent` if you want to be more explicit, or if you want to get events about the `Attachment` as a whole.  You can subscribe to events from `Attachment.events`, and they are also rebroadcasted by `AttachPoints` involved in the `Attachment` if you subscribe to `AttachPoint.events`.
 
 Event types are:
 
@@ -93,8 +93,8 @@ Event types are:
 * `OnConnected` - All objects in the `Attachment` are transitioned in and the strategy has fully connected them
 * `OnDisconnected` - At least one object in the `Attachment` is no longer connected by the strategy
 * `OnObjectWillJoin` - An object will begin transitioning in to the `Attachment`
-* `OnObjectWillConnect` - An object has finished transitioning in and will be connected by the strategy
-* `OnObjectConnected` - An object has been fully connected by the strategy
+* `OnObjectWillConnect` - An object has finished transitioning in and will be passed over to the strategy
+* `OnObjectConnected` - An object has been processed by the strategy (note that if other objects have not finished transitioning in yet, the object may not actually be attached to anything, or it may be partially attached if only some objects have been transitioned in)
 * `OnObjectWillDisconnect` - An object will be disconnected by the strategy
 * `OnObjectWillLeave` - An object has been disconnected by the strategy and will transition out
 * `OnObjectLeft` - An object has fully transitioned out
