@@ -27,7 +27,7 @@ To install, just copy the `Clingy` folder into your Unity `Assets` folder.
 Attach Strategies
 -----
 
-An AttachStrategy does the actual work of connecting objects to each other.  Clingy has various strategies built in, or you can create custom ones by subclassing AttachStrategy (which is a subclass of ScriptableObject).
+An `AttachStrategy` does the actual work of connecting objects to each other.  Clingy has various strategies built in, or you can create custom ones by subclassing `AttachStrategy` (which is a subclass of `ScriptableObject`).
 
 There are built-in strategies for Physics (2D and 3D), Following and Parenting.  Each type has One-to-One, Many-to-One and Chain versions.  There is also a built-in symbolic strategy which does nothing, but still sends attachment-related events.
 
@@ -45,7 +45,7 @@ Transitioners
 
 Often when attaching objects at runtime, an object will need to be prepared in some way.  For instance, you may want a physics object to have its `Rigidbody` component removed while it is attached, and then restored after it is detached.  With Clingy, you can add a `Transitioner` to your `AttachStrategy` for this purpose.  This allows you to add custom code to transition an object in and out of an `Attachment` without having to modify the strategy itself.  You can specify a `Transitioner` per category, meaning that all objects in an `AttachStrategy` that share the same category in the strategy will also use the same `Transitioner`.
 
-Clingy comes with a built-in `FlexibleTransitioner` that is able to do a range of common useful things, but for anything complicated you'll want to create your own custom transition code by subclassing `Transitioner` (like `AttachStrategy`, `Transitioner` is a subclass of ScriptableObject).
+Clingy comes with a built-in `FlexibleTransitioner` that is able to do a range of common useful things, but for anything complicated you'll want to create your own custom transition code by subclassing `Transitioner` (like `AttachStrategy`, `Transitioner` is a subclass of `ScriptableObject`).
 
 A `Transitioner` is able to run code every frame while objects are attached, so if you want you can use it to do more than just transition an object in and out of an `Attachment`.  The difference between a `Transitioner` and an `AttachStrategy` is that a `Transitioner` only acts on one object, while an `AttachStrategy` acts on all objects in the `Attachment`.
 
