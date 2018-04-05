@@ -20,7 +20,7 @@ namespace SubC.Attachments {
 
         public void Reset() {
             enabled = false;
-            param = new ParamSelector(new Param(ParamType.Bool));
+            param = ParamSelector.FlipX();
             keepUpdated = true;
         }
     }
@@ -34,7 +34,7 @@ namespace SubC.Attachments {
 
         public void Reset() {
             enabled = false;
-            param = new ParamSelector(new Param(ParamType.Bool));
+            param = ParamSelector.FlipY();
             keepUpdated = true;
         }
     }
@@ -48,7 +48,7 @@ namespace SubC.Attachments {
 
         public void Reset() {
             enabled = false;
-            param = new ParamSelector(new Param(ParamType.Integer));
+            param = ParamSelector.SortingOrder();
             keepUpdated = true;
         }
     }

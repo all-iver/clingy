@@ -138,16 +138,28 @@ namespace SubC.Attachments {
             this.quaternionValue = quaternionValue;
         }
 
-        public Vector3 GetWorldPosition(GameObject local = null, SpriteRenderer spriteRenderer = null, 
+        public Param(int intValue, string name = null) : this() {
+            this.type = ParamType.Integer;
+            this.name = name ?? defaultNameForType[type];
+            this.intValue = intValue;
+        }
+
+        public Param(bool boolValue, string name = null) : this() {
+            this.type = ParamType.Bool;
+            this.name = name ?? defaultNameForType[type];
+            this.boolValue = boolValue;
+        }
+
+        public Vector3 GetWorldPosition(GameObject local = null, SpriteRenderer localToSpriteRenderer = null, 
                 PositionTransformType useTransform = PositionTransformType.Full) {
             if (type != ParamType.Vector3)
                 throw new System.InvalidOperationException("Param is not a Vector3 type");
             if (local == null)
                 return vector3Value;
             Vector3 value = vector3Value;
-            if (spriteRenderer != null && spriteRenderer.flipX)
+            if (localToSpriteRenderer != null && localToSpriteRenderer.flipX)
                 value.x = -value.x;
-            if (spriteRenderer != null && spriteRenderer.flipY)
+            if (localToSpriteRenderer != null && localToSpriteRenderer.flipY)
                 value.y = -value.y;
             if (useTransform == PositionTransformType.None) {
                 return local.transform.position + value;
@@ -173,6 +185,30 @@ namespace SubC.Attachments {
             if (local == null)
                 return vector3Value;
             return local.transform.TransformDirection(vector3Value);
+        }
+
+        public bool GetFlipX(SpriteRenderer localToSpriteRenderer = null) {
+            if (type != ParamType.Bool)
+                 throw new System.InvalidOperationException("Param is not a Bool type");
+            if (localToSpriteRenderer == null)
+                return boolValue;
+            return boolValue ? !localToSpriteRenderer.flipX : localToSpriteRenderer.flipX;
+        }
+
+        public bool GetFlipY(SpriteRenderer localToSpriteRenderer = null) {
+            if (type != ParamType.Bool)
+                 throw new System.InvalidOperationException("Param is not a Bool type");
+            if (localToSpriteRenderer == null)
+                return boolValue;
+            return boolValue ? !localToSpriteRenderer.flipY : localToSpriteRenderer.flipY;
+        }
+
+        public int GetSortingOrder(SpriteRenderer localToSpriteRenderer = null) {
+            if (type != ParamType.Integer)
+                 throw new System.InvalidOperationException("Param is not an Integer type");
+            if (localToSpriteRenderer == null)
+                return intValue;
+            return intValue + localToSpriteRenderer.sortingOrder;
         }
 
     }

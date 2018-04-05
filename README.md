@@ -32,9 +32,9 @@ Attach Strategies
 
 An `AttachStrategy` does the actual work of connecting objects to each other.  Clingy has various strategies built in, or you can create custom ones by subclassing `AttachStrategy` (which is a subclass of `ScriptableObject`).
 
-There are built-in strategies for Physics (2D and 3D), Following and Parenting.  Each type has One-to-One, Many-to-One and Chain versions.  There is also a built-in Symbolic strategy which does nothing, but still sends attachment-related events.
+There are built-in strategies for Physics (2D and 3D), Following, Parenting and connecting with Lines (using LineRenderer).  Each type has One-to-One, Many-to-One and Chain versions.  There is also a built-in Symbolic strategy which does nothing, but still sends attachment-related events.
 
-To use a built-in strategy, go to the `Assets->Create->Clingy` menu and configure it the way you want it.  Then either create an `Attacher` component in the editor or get a handle to the strategy in code and create a new `Attachment`:
+To use a built-in strategy, create one from the `Assets->Create->Clingy` menu and configure it the way you want it.  Then either create an `Attacher` component in the editor or get a handle to the strategy in code and create a new `Attachment`:
 
 ```
 using SubC.Attachments;
@@ -68,7 +68,7 @@ Attach Points
 
 An `AttachPoint`'s job is to provide `Params` for objects in an `Attachment`.  For instance, the object may specify positions and rotations relative to itself that tell an `AttachStrategy` how to do its job.  An `AttachPoint` also re-broadcasts `Attachment` events, so if you want to get notified whenever anything attaches to a certain object, you can use an `AttachPoint` for that.
 
-An `AttachPoint` can also provide `Params` for other objects in an `Attachment` besides the one the `AttachPoint` component is actually on.  For instance, when you include an object with a `GridAttachPoint` component in an `Attachment`, all other objects in the `Attachment` will have `Params` applied to them that represents their positions snapped to the grid defined by the first object.  Then the `AttachStrategy` can be configured to move the attaching objects to their snapped positions.  The result is that any object that attaches to the `GridAttachPoint` will be snapped to a grid.
+An `AttachPoint` can also provide `Params` for other objects in an `Attachment` besides the one the `AttachPoint` component is actually on.  For instance, when you include an object with a `GridAttachPoint` component in an `Attachment`, all other objects in the `Attachment` will have `Params` applied to them that represent their positions snapped to the grid defined by the first object.  Then the `AttachStrategy` can be configured to move the attaching objects to their snapped positions.  The result is that any object that attaches to the `GridAttachPoint` will be snapped to a grid.
 
 There are a few other simple built-in `AttachPoints` in Clingy, but you can easily create your own by subclassing `AttachPoint`.
 

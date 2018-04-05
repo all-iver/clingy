@@ -48,6 +48,25 @@ namespace SubC.Attachments {
             return ps;
         }
 
+        public static ParamSelector FlipX(string name = "flipX", int provider = 0, bool defaultValue = false) {
+            Param def = new Param(defaultValue, name);
+            ParamSelector ps = new ParamSelector(def, provider, relativityType: ParamRelativityType.Normal);
+            return ps;
+        }
+
+        public static ParamSelector FlipY(string name = "flipY", int provider = 0, bool defaultValue = false) {
+            Param def = new Param(defaultValue, name);
+            ParamSelector ps = new ParamSelector(def, provider, relativityType: ParamRelativityType.Normal);
+            return ps;
+        }
+
+        public static ParamSelector SortingOrder(string name = "sortingOrder", int provider = 0, 
+                int defaultValue = 0) {
+            Param def = new Param(defaultValue, name);
+            ParamSelector ps = new ParamSelector(def, provider, relativityType: ParamRelativityType.Normal);
+            return ps;
+        }
+
         public AttachObject GetProvider(Attachment attachment, AttachObject reference = null) {
             if (reference == null)
                 return attachment.strategy.ResolveProvider(this.provider, attachment);
@@ -122,6 +141,60 @@ namespace SubC.Attachments {
             throw new System.NotImplementedException("Param relativity type not supported for this operation");
         }
 
-    }
+        public bool GetFlipX(Attachment attachment, AttachObject reference = null) {
+            if (defaultParam.type != ParamType.Bool)
+                throw new System.InvalidOperationException("Param type is not Bool");
+            AttachObject provider = GetProvider(attachment, reference);
+            Param param = provider.resolvedParams.GetParam(defaultParam);
+            if (relativityType == ParamRelativityType.None)
+                return param.boolValue;
+            if (relativityType == ParamRelativityType.Normal) {
+                if (relativeTo == ParamNormalRelativity.World)
+                    return param.boolValue;
+                AttachObject relativeToObject = provider;
+                if (relativeTo == ParamNormalRelativity.Object)
+                    relativeToObject = GetRelativeToProvider(attachment, reference);
+                return param.GetFlipX(relativeToObject.spriteRenderer);
+            }
+            throw new System.NotImplementedException("Param relativity type not supported for this operation");                
+        }
+
+        public bool GetFlipY(Attachment attachment, AttachObject reference = null) {
+            if (defaultParam.type != ParamType.Bool)
+                throw new System.InvalidOperationException("Param type is not Bool");
+            AttachObject provider = GetProvider(attachment, reference);
+            Param param = provider.resolvedParams.GetParam(defaultParam);
+            if (relativityType == ParamRelativityType.None)
+                return param.boolValue;
+            if (relativityType == ParamRelativityType.Normal) {
+                if (relativeTo == ParamNormalRelativity.World)
+                    return param.boolValue;
+                AttachObject relativeToObject = provider;
+                if (relativeTo == ParamNormalRelativity.Object)
+                    relativeToObject = GetRelativeToProvider(attachment, reference);
+                return param.GetFlipY(relativeToObject.spriteRenderer);
+            }
+            throw new System.NotImplementedException("Param relativity type not supported for this operation");                
+        }
+
+        public int GetSortingOrder(Attachment attachment, AttachObject reference = null) {
+            if (defaultParam.type != ParamType.Integer)
+                throw new System.InvalidOperationException("Param type is not Integer");
+            AttachObject provider = GetProvider(attachment, reference);
+            Param param = provider.resolvedParams.GetParam(defaultParam);
+            if (relativityType == ParamRelativityType.None)
+                return param.intValue;
+            if (relativityType == ParamRelativityType.Normal) {
+                if (relativeTo == ParamNormalRelativity.World)
+                    return param.intValue;
+                AttachObject relativeToObject = provider;
+                if (relativeTo == ParamNormalRelativity.Object)
+                    relativeToObject = GetRelativeToProvider(attachment, reference);
+                return param.GetSortingOrder(relativeToObject.spriteRenderer);
+            }
+            throw new System.NotImplementedException("Param relativity type not supported for this operation");                
+        }
+
+   }
 
 }

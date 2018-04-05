@@ -58,31 +58,16 @@ namespace SubC.Attachments {
             state.attachedSnapshot.options.tweenRotationOptions = onAttachOptions.rotationOptions.tweenOptions;
             state.attachedSnapshot.options.rotateMethod = onAttachOptions.rotationOptions.rotateMethod;
 
-            // state.attachedSnapshot.options.restoreSortingOrder = onAttachOptions.adoptSortingOrderOptions.enabled;
-            // if (state.attachedSnapshot.options.restoreSortingOrder) {
-            //     ParamSelector selector = onAttachOptions.adoptSortingOrderOptions.param;
-            //     AttachObject provider = obj.ResolveProvider(selector);
-            //     if (provider != null)
-            //         state.attachedSnapshot.data.sortingOrder = provider.GetSortingOrder(selector.name, 
-            //                 selector.defaultParam);
-            // }
-            // // todo - sorting layer?
+            state.attachedSnapshot.options.restoreSortingOrder = onAttachOptions.adoptSortingOrderOptions.enabled;
+            state.attachedSnapshot.data.sortingOrder = onAttachOptions.adoptSortingOrderOptions.param
+                    .GetSortingOrder(obj.attachment, obj);
+            // todo - sorting layer?
 
-            // state.attachedSnapshot.options.restoreFlipX = onAttachOptions.adoptFlipXOptions.enabled;
-            // if (state.attachedSnapshot.options.restoreFlipX) {
-            //     ParamSelector selector = onAttachOptions.adoptFlipXOptions.param;
-            //     AttachObject provider = obj.ResolveProvider(selector);
-            //     if (provider != null)
-            //         state.attachedSnapshot.data.flipX = provider.GetFlipX(selector.name, selector.defaultParam);
-            // }
+            state.attachedSnapshot.options.restoreFlipX = onAttachOptions.adoptFlipXOptions.enabled;
+            state.attachedSnapshot.data.flipX = onAttachOptions.adoptFlipXOptions.param.GetFlipX(obj.attachment, obj);
 
-            // state.attachedSnapshot.options.restoreFlipY = onAttachOptions.adoptFlipYOptions.enabled;
-            // if (state.attachedSnapshot.options.restoreFlipY) {
-            //     ParamSelector selector = onAttachOptions.adoptFlipYOptions.param;
-            //     AttachObject provider = obj.ResolveProvider(selector);
-            //     if (provider != null)
-            //         state.attachedSnapshot.data.flipY = provider.GetFlipX(selector.name, selector.defaultParam);
-            // }
+            state.attachedSnapshot.options.restoreFlipY = onAttachOptions.adoptFlipXOptions.enabled;
+            state.attachedSnapshot.data.flipY = onAttachOptions.adoptFlipXOptions.param.GetFlipY(obj.attachment, obj);
             
             // state.attachedSnapshot.options.restoreLayer = onAttachOptions.adoptLayerOptions.enabled;
             // if (state.attachedSnapshot.options.restoreLayer) {
@@ -140,24 +125,18 @@ namespace SubC.Attachments {
         void ApplyContinuousOptions(AttachObject obj) {
             if (!obj.spriteRenderer)
                 return;
-            // if (onAttachOptions.adoptSortingOrderOptions.enabled) {
-            //     ParamSelector selector = onAttachOptions.adoptSortingOrderOptions.param;
-            //     AttachObject provider = obj.ResolveProvider(selector);
-            //     if (provider != null)
-            //         obj.spriteRenderer.sortingOrder = provider.GetSortingOrder(selector.name, selector.defaultParam);
-            // }
-            // if (onAttachOptions.adoptFlipXOptions.enabled) {
-            //     ParamSelector selector = onAttachOptions.adoptFlipXOptions.param;
-            //     AttachObject provider = obj.ResolveProvider(selector);
-            //     if (provider != null)
-            //         obj.spriteRenderer.flipX = provider.GetFlipX(selector.name, selector.defaultParam);
-            // }
-            // if (onAttachOptions.adoptFlipYOptions.enabled) {
-            //     ParamSelector selector = onAttachOptions.adoptFlipYOptions.param;
-            //     AttachObject provider = obj.ResolveProvider(selector);
-            //     if (provider != null)
-            //         obj.spriteRenderer.flipY = provider.GetFlipY(selector.name, selector.defaultParam);
-            // }
+            if (onAttachOptions.adoptSortingOrderOptions.enabled) {
+                ParamSelector selector = onAttachOptions.adoptSortingOrderOptions.param;
+                obj.spriteRenderer.sortingOrder = selector.GetSortingOrder(obj.attachment, obj);
+            }
+            if (onAttachOptions.adoptFlipXOptions.enabled) {
+                ParamSelector selector = onAttachOptions.adoptFlipXOptions.param;
+                obj.spriteRenderer.flipX = selector.GetFlipX(obj.attachment, obj);
+            }
+            if (onAttachOptions.adoptFlipYOptions.enabled) {
+                ParamSelector selector = onAttachOptions.adoptFlipYOptions.param;
+                obj.spriteRenderer.flipY = selector.GetFlipY(obj.attachment, obj);
+            }
         }
 
     }
