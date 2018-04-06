@@ -10,7 +10,7 @@ namespace SubC.Attachments {
 			public Vector3 position;
 			public Quaternion rotation;
 			public Vector3 scale;
-			public bool hasRigidbody;
+			public bool hasRigidbody, hasRigidbody2D;
 			public RigidbodyType2D bodyType;
 			public PhysicsMaterial2D sharedMaterial;
 			public bool simulated;
@@ -75,22 +75,24 @@ namespace SubC.Attachments {
 				data.flipX = sr.flipX;
 				data.flipY = sr.flipY;
 			}
-			Rigidbody2D rb = target.GetComponent<Rigidbody2D>();
+			Rigidbody rb = target.GetComponent<Rigidbody>();
 			data.hasRigidbody = rb != null;
-			if (data.hasRigidbody) {
-				data.useAutoMass = rb.useAutoMass;
-				data.mass = rb.mass;
-				data.drag = rb.drag;
-				data.angularDrag = rb.angularDrag;
-				data.gravityScale = rb.gravityScale;
-				data.bodyType = rb.bodyType;
-				data.simulated = rb.simulated;
-				data.useFullKinematicContacts = rb.useFullKinematicContacts;
-				data.interpolation = rb.interpolation;
-				data.sleepMode = rb.sleepMode;
-				data.collisionDetectionMode = rb.collisionDetectionMode;
-				data.constraints = rb.constraints;
-				data.sharedMaterial = rb.sharedMaterial;
+			Rigidbody2D rb2D = target.GetComponent<Rigidbody2D>();
+			data.hasRigidbody2D = rb2D != null;
+			if (data.hasRigidbody2D) {
+				data.useAutoMass = rb2D.useAutoMass;
+				data.mass = rb2D.mass;
+				data.drag = rb2D.drag;
+				data.angularDrag = rb2D.angularDrag;
+				data.gravityScale = rb2D.gravityScale;
+				data.bodyType = rb2D.bodyType;
+				data.simulated = rb2D.simulated;
+				data.useFullKinematicContacts = rb2D.useFullKinematicContacts;
+				data.interpolation = rb2D.interpolation;
+				data.sleepMode = rb2D.sleepMode;
+				data.collisionDetectionMode = rb2D.collisionDetectionMode;
+				data.constraints = rb2D.constraints;
+				data.sharedMaterial = rb2D.sharedMaterial;
 			}
             // https://stackoverflow.com/questions/9453101/how-do-i-get-epoch-time-in-c
 			capturedTimestamp = (int) (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
@@ -176,7 +178,7 @@ namespace SubC.Attachments {
         protected void ApplyNonTweenables() {
 			if (!target)
                 throw new System.InvalidOperationException("No target for snapshot.");
-			// Rigidbody rb = target.GetComponent<Rigidbody>(); // todo
+			Rigidbody rb = target.GetComponent<Rigidbody>(); // todo
 			Rigidbody2D rb2D = target.GetComponent<Rigidbody2D>();
 			if (options.restoreLayer)
 				target.layer = data.layer; 
@@ -196,13 +198,18 @@ namespace SubC.Attachments {
                 target.transform.SetParent(oldParent);
             }
 			if (options.rigidbodyBehavior == RigidbodyRestoreBehavior.Restore) {
-				if (!data.hasRigidbody) {
+				if (!data.hasRigidbody2D) {
 					if (rb2D) {
 						// avoid an extra physics frame after destroying
 						rb2D.simulated = false;
 						GameObject.Destroy(rb2D);
 					}
-				} else {
+				} 
+                if (!data.hasRigidbody) {
+                    if (rb)
+                        GameObject.Destroy(rb);
+                }
+                if (data.hasRigidbody2D) {
 					if (!rb2D)
 						rb2D = target.gameObject.AddComponent<Rigidbody2D>();
 					rb2D.useAutoMass = data.useAutoMass;
@@ -220,12 +227,19 @@ namespace SubC.Attachments {
 					rb2D.constraints = data.constraints;
 					rb2D.sharedMaterial = data.sharedMaterial;
 				}
+                if (data.hasRigidbody) {
+                    if (!rb)
+                        rb = target.gameObject.AddComponent<Rigidbody>();
+                    // todo
+                }
 			} else if (options.rigidbodyBehavior == RigidbodyRestoreBehavior.Desimulate) {
 				if (rb2D) {
                     rb2D.velocity = Vector2.zero;
                     rb2D.angularVelocity = 0;
 					rb2D.simulated = false;
                 }
+				if (rb)
+                    throw new System.InvalidOperationException("Desimulate not applicable to Rigidbody");
 			} else if (options.rigidbodyBehavior == RigidbodyRestoreBehavior.Destroy) {
 				if (rb2D) {
 					// avoid an extra physics frame after destroying
@@ -237,11 +251,15 @@ namespace SubC.Attachments {
                     // update - Unity says they fixed it in 5.6.0b5
 					GameObject.Destroy(rb2D);
 				}
+                if (rb)
+                    GameObject.Destroy(rb);
 			} else if (options.rigidbodyBehavior == RigidbodyRestoreBehavior.SetDynamic) {
 				if (rb2D) {
 					rb2D.bodyType = RigidbodyType2D.Dynamic;
 					rb2D.simulated = true;
 				}
+                if (rb)
+                    rb.isKinematic = false;
 			} else if (options.rigidbodyBehavior == RigidbodyRestoreBehavior.SetKinematic) {
 				if (rb2D) {
                     rb2D.velocity = Vector2.zero;
@@ -249,6 +267,8 @@ namespace SubC.Attachments {
 					rb2D.bodyType = RigidbodyType2D.Kinematic;
 					rb2D.simulated = true;
 				}
+                if (rb)
+                    rb.isKinematic = true;
 			}
         }
 

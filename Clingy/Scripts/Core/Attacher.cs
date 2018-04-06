@@ -26,9 +26,12 @@ namespace SubC.Attachments {
             get { return _attachment; } 
             private set {
                 if (_attachment != null) {
+                    _attachment.events.OnWillAttach.RemoveListener(HandleEvent);
                     _attachment.events.OnAttached.RemoveListener(HandleEvent);
                     _attachment.events.OnWillDetach.RemoveListener(HandleEvent);
                     _attachment.events.OnDetached.RemoveListener(HandleEvent);
+                    _attachment.events.OnConnected.RemoveListener(HandleEvent);
+                    _attachment.events.OnDisconnected.RemoveListener(HandleEvent);
                     _attachment.events.OnObjectWillJoin.RemoveListener(HandleEvent);
                     _attachment.events.OnObjectWillConnect.RemoveListener(HandleEvent);
                     _attachment.events.OnObjectConnected.RemoveListener(HandleEvent);
@@ -37,9 +40,12 @@ namespace SubC.Attachments {
                     _attachment.events.OnObjectLeft.RemoveListener(HandleEvent);
                 }
                 _attachment = value;
+                _attachment.events.OnWillAttach.AddListener(HandleEvent);
                 _attachment.events.OnAttached.AddListener(HandleEvent);
                 _attachment.events.OnWillDetach.AddListener(HandleEvent);
                 _attachment.events.OnDetached.AddListener(HandleEvent);
+                _attachment.events.OnConnected.AddListener(HandleEvent);
+                _attachment.events.OnDisconnected.AddListener(HandleEvent);
                 _attachment.events.OnObjectWillJoin.AddListener(HandleEvent);
                 _attachment.events.OnObjectWillConnect.AddListener(HandleEvent);
                 _attachment.events.OnObjectConnected.AddListener(HandleEvent);
@@ -53,6 +59,7 @@ namespace SubC.Attachments {
         public bool isAttaching { get { return attachment != null && attachment.isAttaching; } }
         public bool isAttached { get { return attachment != null && attachment.isAttached; } }
         public bool isDetaching { get { return attachment != null && attachment.isDetaching; } }
+        public bool isConnected { get { return attachment != null && attachment.isConnected; } }
         
         public bool isActive { get { return attachment != null && attachment.isActive; } }
 
