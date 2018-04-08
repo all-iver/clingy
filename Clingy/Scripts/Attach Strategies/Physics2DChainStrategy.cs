@@ -10,15 +10,20 @@ namespace SubC.Attachments {
 
         [System.Serializable]
         public class ChainJointDescription2D : AttachStrategyJointDescription2D {
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector anchorParam;
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector connectedAnchorParam; 
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector targetParam;
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector limitsParam;
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector distanceParam;
 
             public override ParamSelector GetAnchorParamSelector() {
@@ -44,8 +49,8 @@ namespace SubC.Attachments {
             public override void Reset() {
                 base.Reset();
                 anchorParam = ParamSelector.Position(provider: (int) Providers.Link);
-                connectedAnchorParam = ParamSelector.Position(provider: (int) Providers.NextLink);
-                targetParam = ParamSelector.Position(provider: (int) Providers.NextLink);
+                connectedAnchorParam = ParamSelector.Position(provider: (int) Providers.PreviousLink);
+                targetParam = ParamSelector.Position(provider: (int) Providers.PreviousLink);
                 limitsParam = new ParamSelector(new Param(ParamType.AngleLimits), (int) Providers.Link);
                 distanceParam = new ParamSelector(new Param(ParamType.Float, "distance"));
             }
@@ -63,12 +68,13 @@ namespace SubC.Attachments {
         }
 
 		protected override void ConnectLinks(AttachObject link, AttachObject nextLink) {
-            Physics2DAttachStrategyHelper.CreateOrApplyAllJoints(link, nextLink, jointDescriptions, 
-                    link, hideJointsInInspector);
+            // put the joint on nextLink - so it is also the reference object
+            Physics2DAttachStrategyHelper.CreateOrApplyAllJoints(nextLink, link, jointDescriptions, 
+                    nextLink, hideJointsInInspector);
         }
 
         protected override void DisconnectLinks(AttachObject link, AttachObject nextLink) {
-            Physics2DAttachStrategyHelper.DestroyJoints(link);
+            Physics2DAttachStrategyHelper.DestroyJoints(nextLink);
         }
 
         void UpdateFromParamsAndApply(Attachment attachment) {
@@ -81,8 +87,9 @@ namespace SubC.Attachments {
                 AttachObject nextLink = GetNextLink(link);
                 if (nextLink == null || !nextLink.isConnected)
                     continue;
-                Physics2DAttachStrategyHelper.CreateOrApplyAllJoints(link, nextLink, jointDescriptions, 
-                        link, hideJointsInInspector);
+                // put the joint on nextLink - so it is also the reference object
+                Physics2DAttachStrategyHelper.CreateOrApplyAllJoints(nextLink, link, jointDescriptions, 
+                        nextLink, hideJointsInInspector);
             }
         }
 

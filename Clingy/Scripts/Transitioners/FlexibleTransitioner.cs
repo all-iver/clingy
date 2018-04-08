@@ -59,15 +59,20 @@ namespace SubC.Attachments {
             state.attachedSnapshot.options.rotateMethod = onAttachOptions.rotationOptions.rotateMethod;
 
             state.attachedSnapshot.options.restoreSortingOrder = onAttachOptions.adoptSortingOrderOptions.enabled;
-            state.attachedSnapshot.data.sortingOrder = onAttachOptions.adoptSortingOrderOptions.param
-                    .GetSortingOrder(obj.attachment, obj);
+            if (state.attachedSnapshot.options.restoreSortingOrder && obj.spriteRenderer)
+                state.attachedSnapshot.data.sortingOrder = obj.spriteRenderer.sortingOrder;
             // todo - sorting layer?
 
             state.attachedSnapshot.options.restoreFlipX = onAttachOptions.adoptFlipXOptions.enabled;
-            state.attachedSnapshot.data.flipX = onAttachOptions.adoptFlipXOptions.param.GetFlipX(obj.attachment, obj);
+            if (state.attachedSnapshot.options.restoreFlipX && obj.spriteRenderer)
+                state.attachedSnapshot.data.flipX = onAttachOptions.adoptFlipXOptions.param.GetFlipX(
+                        obj.attachment, obj);
+
 
             state.attachedSnapshot.options.restoreFlipY = onAttachOptions.adoptFlipXOptions.enabled;
-            state.attachedSnapshot.data.flipY = onAttachOptions.adoptFlipXOptions.param.GetFlipY(obj.attachment, obj);
+            if (state.attachedSnapshot.options.restoreFlipY && obj.spriteRenderer)
+                state.attachedSnapshot.data.flipY = onAttachOptions.adoptFlipXOptions.param.GetFlipY(
+                        obj.attachment, obj);
             
             // state.attachedSnapshot.options.restoreLayer = onAttachOptions.adoptLayerOptions.enabled;
             // if (state.attachedSnapshot.options.restoreLayer) {

@@ -8,22 +8,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91c3701badbc240e8b21fd50052e2c7f, type: 3}
-  m_Name: Examples 01 - Physics One-to-One
+  m_Script: {fileID: 11500000, guid: 8fa189cee912941be8b5d5924dd22e64, type: 3}
+  m_Name: Examples 02 - Physics Many-to-One
   m_EditorClassIdentifier: 
   _selectedCategory: 1
   transitioners:
   - {fileID: 0}
-  - {fileID: 114485948257214362}
+  - {fileID: 114536310107011736}
   jointDescriptions:
-  - jointType: 25
-    anchor: {x: 0, y: 0, z: 0}
+  - jointType: 20
+    anchor: {x: -1.6400003, y: -2.8400002, z: 0}
     connectedAnchor: {x: 0, y: 0, z: 0}
-    axis: {x: 0, y: 0, z: 0}
-    swingAxis: {x: 0.8330179, y: 0.14197768, z: -0.53471816}
+    axis: {x: 0, y: 0, z: 1}
+    swingAxis: {x: 0.8330179, y: 0, z: 0.553246}
     breakForce: Infinity
     breakTorque: Infinity
-    enableCollision: 1
+    enableCollision: 0
     enablePreprocessing: 1
     useLimits: 0
     useMotor: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     enableProjection: 0
     projectionDistance: 0.1
     projectionAngle: 180
-    secondaryAxis: {x: 0.8330179, y: 0.14197768, z: -0.53471816}
+    secondaryAxis: {x: 0.8330179, y: 0, z: 0.553246}
     xMotion: 2
     yMotion: 2
     zMotion: 2
@@ -249,7 +249,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         objectValue: {fileID: 0}
-      provider: 1
+      provider: 0
       relativeToProvider: 0
       relativityType: 1
       relativeTo: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
       defaultParam:
         type: 80
         name: axis
-        vector3Value: {x: 0, y: 0, z: 0}
+        vector3Value: {x: 0, y: 0, z: 1}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
         intValue: 0
@@ -309,8 +309,8 @@ MonoBehaviour:
         objectValue: {fileID: 0}
       provider: 0
       relativeToProvider: 0
-      relativityType: 0
-      relativeTo: 0
+      relativityType: 1
+      relativeTo: 1
       showPositionOptions: 0
       useTransform: 0
       useSpriteFlip: 1
@@ -367,7 +367,7 @@ MonoBehaviour:
         objectValue: {fileID: 0}
       provider: 0
       relativeToProvider: 0
-      relativityType: 0
+      relativityType: 1
       relativeTo: 0
       showPositionOptions: 0
       useTransform: 0
@@ -425,13 +425,13 @@ MonoBehaviour:
         objectValue: {fileID: 0}
       provider: 0
       relativeToProvider: 0
-      relativityType: 0
+      relativityType: 1
       relativeTo: 0
       showPositionOptions: 0
       useTransform: 0
       useSpriteFlip: 1
   hideJointsInInspector: 1
---- !u!114 &114485948257214362
+--- !u!114 &114536310107011736
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

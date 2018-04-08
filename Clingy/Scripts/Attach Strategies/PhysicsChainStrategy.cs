@@ -10,15 +10,20 @@ namespace SubC.Attachments {
 
         [System.Serializable]
         public class ChainJointDescription : AttachStrategyJointDescription {
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector anchorParam;
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector connectedAnchorParam; 
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector axisParam;
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector swingAxisParam;
-            [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.NextLink })]
+            [ParamSelector(new int[] { (int) Providers.Head, (int) Providers.PreviousLink, (int) Providers.Link,
+                    (int) Providers.Tail })]
             public ParamSelector secondaryAxisParam;
             // [ParamSelector(new int[] { (int) Providers.Link, (int) Providers.Leaves })]
             // public ParamSelector limitsParam;
@@ -46,11 +51,11 @@ namespace SubC.Attachments {
             public override void Reset() {
                 base.Reset();
                 anchorParam = ParamSelector.Position(provider: (int) Providers.Link);
-                connectedAnchorParam = ParamSelector.Position(provider: (int) Providers.NextLink);
-                axisParam = new ParamSelector(new Param(ParamType.Vector3, "axis"), (int) Providers.Link);
-                secondaryAxisParam = new ParamSelector(new Param(Vector3.right, "secondaryAxis"), 
-                        (int) Providers.Link);
-                swingAxisParam = new ParamSelector(new Param(Vector3.right, "swingAxis"), (int) Providers.Link);
+                connectedAnchorParam = ParamSelector.Position(provider: (int) Providers.PreviousLink);
+                axisParam = ParamSelector.Direction("axis", (int) Providers.PreviousLink, Vector3.forward);
+                secondaryAxisParam = ParamSelector.Direction("secondaryAxis", (int) Providers.PreviousLink,
+                        Vector3.right);
+                swingAxisParam = ParamSelector.Direction("swingAxis", (int) Providers.PreviousLink, Vector3.right);
                 // limitsParam = new ParamSelector(Param.defaultNameForType[ParamType.AngleLimits], 
                 //         new Param(ParamType.AngleLimits), (int) Providers.Object1);
             }
@@ -68,12 +73,13 @@ namespace SubC.Attachments {
         }
 
 		protected override void ConnectLinks(AttachObject link, AttachObject nextLink) {
-            PhysicsAttachStrategyHelper.CreateOrApplyAllJoints(link, nextLink, jointDescriptions, 
-                    link, hideJointsInInspector);
+            // put the joint on nextLink - so it is also the reference object
+            PhysicsAttachStrategyHelper.CreateOrApplyAllJoints(nextLink, link, jointDescriptions, 
+                    nextLink, hideJointsInInspector);
         }
 
         protected override void DisconnectLinks(AttachObject link, AttachObject nextLink) {
-            PhysicsAttachStrategyHelper.DestroyJoints(link);
+            PhysicsAttachStrategyHelper.DestroyJoints(nextLink);
         }
 
         void UpdateFromParamsAndApply(Attachment attachment) {
@@ -86,8 +92,9 @@ namespace SubC.Attachments {
                 AttachObject nextLink = GetNextLink(link);
                 if (nextLink == null || !nextLink.isConnected)
                     continue;
-                PhysicsAttachStrategyHelper.CreateOrApplyAllJoints(link, nextLink, jointDescriptions, 
-                        link, hideJointsInInspector);
+                // put the joint on nextLink - so it is also the reference object
+                PhysicsAttachStrategyHelper.CreateOrApplyAllJoints(nextLink, link, jointDescriptions, 
+                        nextLink, hideJointsInInspector);
             }
         }
 

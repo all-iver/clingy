@@ -47,10 +47,9 @@ namespace SubC.Attachments {
                 base.Reset();
                 anchorParam = ParamSelector.Position(provider: (int) Providers.Leaf);
                 connectedAnchorParam = ParamSelector.Position(provider: (int) Providers.Root);
-                axisParam = new ParamSelector(new Param(ParamType.Vector3, "axis"), (int) Providers.Root);
-                secondaryAxisParam = new ParamSelector(new Param(Vector3.right, "secondaryAxis"), 
-                        (int) Providers.Root);
-                swingAxisParam = new ParamSelector(new Param(Vector3.right, "swingAxis"), (int) Providers.Root);
+                axisParam = ParamSelector.Direction("axis", (int) Providers.Root, Vector3.forward);
+                secondaryAxisParam = ParamSelector.Direction("secondaryAxis", (int) Providers.Root, Vector3.right);
+                swingAxisParam = ParamSelector.Direction("swingAxis", (int) Providers.Root, Vector3.right);
                 // limitsParam = new ParamSelector(Param.defaultNameForType[ParamType.AngleLimits], 
                 //         new Param(ParamType.AngleLimits), (int) Providers.Object1);
             }

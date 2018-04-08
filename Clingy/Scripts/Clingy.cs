@@ -25,6 +25,7 @@
             return attachment;
         }
 
+        // does not use the head/tail categories for now
         public static Attachment AttachChain(AttachStrategy strategy, params GameObject[] links) {
             AttachObject[] objects = new AttachObject[links.Length];
             for (int i = 0; i < links.Length; i++)
