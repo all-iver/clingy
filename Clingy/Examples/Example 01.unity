@@ -483,7 +483,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 45.304, y: -49.583}
-  m_SizeDelta: {x: 3.755, y: 0.833}
+  m_SizeDelta: {x: 3.755, y: 1.574}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &123101761
 MonoBehaviour:
@@ -517,7 +517,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Physics 3D
+  m_Text: "Physics 3D \nStrategy"
 --- !u!222 &123101762
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -929,7 +929,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 45.35, y: -49.602}
-  m_SizeDelta: {x: 3.662, y: 0.796}
+  m_SizeDelta: {x: 3.662, y: 1.537}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &499910356
 MonoBehaviour:
@@ -963,7 +963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Physics 2D
+  m_Text: "Physics 2D \nStrategy"
 --- !u!222 &499910357
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1431,7 +1431,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 46.089996, y: -49.589}
-  m_SizeDelta: {x: 3.278, y: 0.822}
+  m_SizeDelta: {x: 3.278, y: 1.563}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &706354093
 MonoBehaviour:
@@ -1465,7 +1465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Following
+  m_Text: Following Strategy
 --- !u!222 &706354094
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1774,8 +1774,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.459999, y: -20.047}
-  m_SizeDelta: {x: 13.637, y: 1.177}
+  m_AnchoredPosition: {x: 13.46, y: -20.26}
+  m_SizeDelta: {x: 18.746, y: 1.177}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &805501955
 MonoBehaviour:
@@ -1809,7 +1809,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: e.g. Clingy.AttachOneToOne(strategy, obj1, obj2)
+  m_Text: 'An AttachStrategy does the work of connecting objects in an Attachment
+
+    e.g. Clingy.AttachOneToOne(strategy, obj1, obj2)'
 --- !u!222 &805501956
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2386,7 +2388,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 46.491, y: -49.498}
-  m_SizeDelta: {x: 3.607, y: 1.005}
+  m_SizeDelta: {x: 3.607, y: 1.598}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1380995045
 MonoBehaviour:
@@ -2420,7 +2422,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Parenting
+  m_Text: Parenting Strategy
 --- !u!222 &1380995046
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3044,7 +3046,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 13.46, y: -18.87}
-  m_SizeDelta: {x: 10.124, y: 1.177}
+  m_SizeDelta: {x: 22.14, y: 1.177}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1835449332
 MonoBehaviour:
@@ -3078,7 +3080,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: One-to-One Examples
+  m_Text: One-to-One strategy examples
 --- !u!222 &1835449333
 CanvasRenderer:
   m_ObjectHideFlags: 0
