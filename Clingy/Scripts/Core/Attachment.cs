@@ -142,7 +142,7 @@
             else if (info.eventType == AttachObjectListEventType.ObjectWillBeRemoved)
                 HandleObjectWillBeRemoved(info.obj);
             else if (info.eventType == AttachObjectListEventType.ObjectRemoved)
-                HandleObjectRemoved(info.obj, info.oldIndexInCategory);
+                HandleObjectWasRemoved(info.obj, info.oldIndexInCategory);
         }
 
         void HandleObjectAdded(AttachObject obj) {
@@ -167,7 +167,10 @@
             UpdateIsConnected();
         }
 
-        void HandleObjectRemoved(AttachObject obj, int oldIndexInCategory) {
+        void HandleObjectWasRemoved(AttachObject obj, int oldIndexInCategory) {
+            if (!isActive)
+                return;
+            strategy.OnObjectWasRemoved(this, obj, oldIndexInCategory);
             UpdateIsConnected();
         }
 

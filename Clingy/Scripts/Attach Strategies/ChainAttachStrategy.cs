@@ -162,9 +162,21 @@ namespace SubC.Attachments {
                 DisconnectLinks(previousLink, link);
             if (nextLink != null && nextLink.isConnected)
                 DisconnectLinks(link, nextLink);
-            if ((!link.attachment.isDetaching && !link.attachment.isDetached) 
-                    && previousLink != null && previousLink.isConnected && nextLink != null && nextLink.isConnected)
-                ConnectLinks(previousLink, nextLink);
+        }
+
+        public override void OnObjectWasRemoved(Attachment attachment, AttachObject obj, int oldIndexInCategory) {
+            if (obj.category != (int) Categories.Links)
+                return;
+            AttachObject link;
+            if (oldIndexInCategory == 0)
+                link = GetHead(attachment);
+            else
+                link = attachment.objects.Get((int) Categories.Links, oldIndexInCategory - 1);
+            if (link == null || !link.isConnected)
+                return;
+            AttachObject nextLink = GetNextLink(link);
+            if (nextLink != null && nextLink.isConnected)
+                ConnectLinks(link, nextLink);
         }
 
 	}

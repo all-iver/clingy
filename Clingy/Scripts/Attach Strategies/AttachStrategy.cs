@@ -91,6 +91,10 @@
 
         public abstract void DisconnectObjectImmediate(AttachObject obj);
 
+        // an object was removed from the list so potentially connect/rearrange existing objects
+        public virtual void OnObjectWasRemoved(Attachment attachment, AttachObject obj, int oldIndexInCategory) {
+        }
+
         public virtual void OnParamsUpdated(Attachment attachment) {
         }
 

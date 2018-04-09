@@ -257,18 +257,6 @@ namespace SubC.Attachments.ClingyEditor {
         }
 
 		public void OnInspectorGUI(SerializedProperty requestProp, bool disableAddButton) {
-			// if (strategy == null)
-			// 	EditorGUILayout.HelpBox("An Attach Strategy describes how objects will attach. You can create one "
-            //             + "from the menu in Assets->Create->Clingy.", MessageType.Warning);
-            // EditorGUI.BeginChangeCheck();
-			// AttachStrategy newStrategy = (AttachStrategy) EditorGUILayout.ObjectField("Attach Strategy", 
-            //         strategy, typeof(AttachStrategy), false);
-            // if (EditorGUI.EndChangeCheck()) {
-            //     strategy = newStrategy;
-            //     if (showAttachObjects)
-            //         EnsureCategoryMinimums();
-            // }
-
 			// SerializedProperty prop = objectsProp;
             objectsRL.displayAdd = !disableAddButton && CanAddAttachObjects();
             objectsRL.displayRemove = CanRemoveSelectedAttachObject();

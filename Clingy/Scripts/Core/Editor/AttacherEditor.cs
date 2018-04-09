@@ -24,10 +24,19 @@
 
             SerializedProperty prop;
 
+			if (attacher.strategy == null)
+				EditorGUILayout.HelpBox("An Attach Strategy describes how objects will attach. You can create one "
+                        + "from the menu in Assets->Create->Clingy.", MessageType.Warning);
+            EditorGUI.BeginChangeCheck();
+			AttachStrategy newStrategy = (AttachStrategy) EditorGUILayout.ObjectField("Attach Strategy", 
+                    attacher.strategy, typeof(AttachStrategy), false);
+            if (EditorGUI.EndChangeCheck())
+                attacher.strategy = newStrategy;
+
             prop = serializedObject.FindProperty("_request"); 
             objectListEditor.OnInspectorGUI(prop, attacher.isActive);
 
-            DrawPropertiesExcluding(serializedObject, new string[] { "m_Script" });
+            DrawPropertiesExcluding(serializedObject, new string[] { "m_Script", "_strategy" });
             // EditorGUILayout.PropertyField(serializedObject.FindProperty("attachOnStart"));
 
             EditorGUI.BeginChangeCheck();
