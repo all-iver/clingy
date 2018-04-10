@@ -27,6 +27,11 @@ Installing
 
 To install, just copy the `Clingy` folder into your Unity `Assets` folder.
 
+Demo Video
+-----
+
+https://vimeo.com/264135694
+
 Attach Strategies
 -----
 
