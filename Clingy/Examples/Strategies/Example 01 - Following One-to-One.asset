@@ -18,7 +18,7 @@ MonoBehaviour:
   positionOptions:
     behavior: 1
     moveMethod: 0
-    smoothing: 0.1
+    smoothing: 0.3
     followX: 1
     followY: 1
     followZ: 0

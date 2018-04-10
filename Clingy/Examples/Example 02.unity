@@ -1512,6 +1512,7 @@ GameObject:
   - component: {fileID: 675431059}
   - component: {fileID: 675431058}
   - component: {fileID: 675431060}
+  - component: {fileID: 675431061}
   m_Layer: 0
   m_Name: Parent
   m_TagString: Untagged
@@ -1601,6 +1602,31 @@ MonoBehaviour:
   distance: 0.4
   animate: 0
   animationSpeed: 90
+--- !u!61 &675431061
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 675431057}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &698904141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,6 +1747,7 @@ GameObject:
   - component: {fileID: 707410145}
   - component: {fileID: 707410144}
   - component: {fileID: 707410146}
+  - component: {fileID: 707410147}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -1810,6 +1837,31 @@ MonoBehaviour:
   distance: 0.4
   animate: 0
   animationSpeed: 90
+--- !u!61 &707410147
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 707410143}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &747679692
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,6 +3250,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1662910793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1662910796}
+  - component: {fileID: 1662910795}
+  - component: {fileID: 1662910794}
+  m_Layer: 0
+  m_Name: Mouse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1662910794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662910793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f3941a89d4c448498924f3322f4468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragStrategy: {fileID: 11400000, guid: e246ab1a7b6bc4cfd93908a9f4361d14, type: 2}
+--- !u!114 &1662910795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662910793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b82e85bbb5f14e62aa9723ab253c807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+    entries: []
+--- !u!4 &1662910796
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1662910793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.15834, y: -1.9312276, z: -0.17544188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691718641
 GameObject:
   m_ObjectHideFlags: 0
