@@ -6,57 +6,24 @@ using SubC.Attachments;
 public class ClingyExamples04 : MonoBehaviour {
 
     public Attacher attacher;
-    public GameObject attachHeadButton, detachHeadButton, attachTailButton, detachTailButton, attachLinkButton, 
-            detachLinkButton;
-    public GameObject linkGameObject;
-    AttachObject head, tail, link;
+    public GameObject anchorPosBtn, anchorNegBtn;
+    bool toggle;
 
-    void Start() {
-        head = attacher.attachment.objects.Get(0, 0);
-        detachHeadButton.SetActive(true);
-        attachHeadButton.SetActive(false);
-        tail = attacher.attachment.objects.Get(2, 0);
-        detachTailButton.SetActive(true);
-        attachTailButton.SetActive(false);
-        link = new AttachObject(linkGameObject, 1);
-        detachLinkButton.SetActive(false);
-        attachLinkButton.SetActive(true);
+	// Use this for initialization
+	void Start () {
+        OnPosClicked();
+	}
+
+    public void OnPosClicked() {
+        anchorPosBtn.SetActive(false);
+        anchorNegBtn.SetActive(true);
+        attacher.attachment.objects.Get(0, 0).defaultParams.SetParam(new Param(new Vector2(-0.5f, 0.5f), "anchor"));
     }
 
-    public void AttachHead() {
-        attacher.attachment.objects.Add(head);
-        attachHeadButton.SetActive(false);
-        detachHeadButton.SetActive(true);
-    }
-
-    public void DetachHead() {
-        attacher.attachment.objects.Remove(head);
-        attachHeadButton.SetActive(true);
-        detachHeadButton.SetActive(false);
-    }
-
-    public void AttachTail() {
-        attacher.attachment.objects.Add(tail);
-        attachTailButton.SetActive(false);
-        detachTailButton.SetActive(true);
-    }
-
-    public void DetachTail() {
-        attacher.attachment.objects.Remove(tail);
-        attachTailButton.SetActive(true);
-        detachTailButton.SetActive(false);
-    }
-
-    public void AttachLink() {
-        attacher.attachment.objects.Add(link);
-        attachLinkButton.SetActive(false);
-        detachLinkButton.SetActive(true);
-    }
-
-    public void DetachLink() {
-        attacher.attachment.objects.Remove(link);
-        attachLinkButton.SetActive(true);
-        detachLinkButton.SetActive(false);
+    public void OnNegClicked() {
+        anchorPosBtn.SetActive(true);
+        anchorNegBtn.SetActive(false);
+        attacher.attachment.objects.Get(0, 0).defaultParams.SetParam(new Param(new Vector2(-0.5f, -0.5f), "anchor"));
     }
 
 }

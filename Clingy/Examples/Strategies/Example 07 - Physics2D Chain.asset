@@ -8,144 +8,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d7fb1b6d98a94bfeb2557db9b9be0ef, type: 3}
-  m_Name: Examples 03 - Physics Chain
+  m_Script: {fileID: 11500000, guid: 174d2842476a64c3eac691c8cb1c1171, type: 3}
+  m_Name: Example 07 - Physics2D Chain
   m_EditorClassIdentifier: 
   _selectedCategory: 1
   transitioners:
   - {fileID: 0}
-  - {fileID: 114502618190623990}
-  hideJointsInInspector: 1
+  - {fileID: 114012487112345000}
+  hideJointsInInspector: 0
   jointDescriptions:
-  - jointType: 20
-    anchor: {x: -0.00000020861626, y: 0.49999994, z: 0.000000059604645}
-    connectedAnchor: {x: 0.00000020861626, y: -0.49999994, z: -0.000000059604645}
-    axis: {x: 0.000000059604645, y: -0.000000074505806, z: 1}
-    swingAxis: {x: 1.0000002, y: 0, z: 0.000000059604645}
-    breakForce: Infinity
-    breakTorque: Infinity
-    enableCollision: 0
-    enablePreprocessing: 1
+  - anchor: {x: -0.5, y: 0}
+    connectedAnchor: {x: 0.50000006, y: -0.00000008195639}
+    target: {x: 1.6335108, y: -2.5286615}
+    jointType: 5
     useLimits: 0
-    useMotor: 0
-    useSpring: 0
-    tolerance: 0.025
-    minDistance: 0
-    maxDistance: 0
-    spring:
-      spring: 10
-      damper: 0.2
-      targetPosition: 0
-    twistLimitSpring:
-      spring: 0
-      damper: 0
-    swingLimitSpring:
-      spring: 0
-      damper: 0
-    motor:
-      force: 0
-      freeSpin: 0
-      targetVelocity: 0
     limits:
       min: 0
       max: 0
-      bounciness: 0
-      bounceMinVelocity: 0
-      contactDistance: 0
-      relativeTo: 0
-    lowTwistLimit:
-      limit: -20
-      bounciness: 0
-      contactDistance: 0
-    highTwistLimit:
-      limit: 70
-      bounciness: 0
-      contactDistance: 0
-    swing1Limit:
-      limit: 40
-      bounciness: 0
-      contactDistance: 0
-    swing2Limit:
-      limit: 40
-      bounciness: 0
-      contactDistance: 0
-    enableProjection: 0
-    projectionDistance: 0.1
-    projectionAngle: 180
-    secondaryAxis: {x: 1.0000002, y: 0, z: 0.000000059604645}
-    xMotion: 2
-    yMotion: 2
-    zMotion: 2
-    angularXMotion: 2
-    angularYMotion: 2
-    angularZMotion: 2
-    linearLimitSpring:
-      spring: 0
-      damper: 0
-    angularXLimitSpring:
-      spring: 0
-      damper: 0
-    angularYZLimitSpring:
-      spring: 0
-      damper: 0
-    linearLimit:
-      limit: 0
-      bounciness: 0
-      contactDistance: 0
-    lowAngularXLimit:
-      limit: 0
-      bounciness: 0
-      contactDistance: 0
-    highAngularXLimit:
-      limit: 0
-      bounciness: 0
-      contactDistance: 0
-    angularYLimit:
-      limit: 0
-      bounciness: 0
-      contactDistance: 0
-    angularZLimit:
-      limit: 0
-      bounciness: 0
-      contactDistance: 0
-    targetPosition: {x: 0, y: 0, z: 0}
-    targetVelocity: {x: 0, y: 0, z: 0}
-    targetAngularVelocity: {x: 0, y: 0, z: 0}
-    xDrive:
-      positionSpring: 0
-      positionDamper: 0
-      maximumForce: 3.402823e+38
-    yDrive:
-      positionSpring: 0
-      positionDamper: 0
-      maximumForce: 3.402823e+38
-    zDrive:
-      positionSpring: 0
-      positionDamper: 0
-      maximumForce: 3.402823e+38
-    angularXDrive:
-      positionSpring: 0
-      positionDamper: 0
-      maximumForce: 3.402823e+38
-    angularYZDrive:
-      positionSpring: 0
-      positionDamper: 0
-      maximumForce: 3.402823e+38
-    slerpDrive:
-      positionSpring: 0
-      positionDamper: 0
-      maximumForce: 3.402823e+38
-    targetRotation: {x: 0, y: 0, z: 0, w: 1}
-    rotationDriveMode: 0
-    projectionMode: 0
-    configuredInWorldSpace: 0
-    swapBodies: 0
-    angularLimitsRelativeTo: 0
+    motor:
+      motorSpeed: 0
+      maxMotorTorque: 10000
+    useMotor: 0
+    distance: 0.5
+    maxDistanceOnly: 1
+    autoConfigureConnectedAnchor: 0
+    autoConfigureDistance: 0
+    autoConfigureOffset: 1
+    maxForce: 10000
+    maxTorque: 10000
+    maxFrictionForce: 1
+    maxFrictionTorque: 1
+    correctionScale: 0.3
+    dampingRatio: 0
+    frequency: 5
+    enableCollision: 0
+    breakForce: Infinity
+    breakTorque: Infinity
+    linearOffset: {x: 0, y: 0}
+    angularOffset: 0
     anchorParam:
       defaultParam:
         type: 80
         name: position
-        vector3Value: {x: 0, y: 0.5, z: 0}
+        vector3Value: {x: -0.5, y: 0, z: 0}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
         intValue: 0
@@ -203,7 +108,7 @@ MonoBehaviour:
       defaultParam:
         type: 80
         name: position
-        vector3Value: {x: 0, y: -0.5, z: 0}
+        vector3Value: {x: 0.5, y: 0, z: 0}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
         intValue: 0
@@ -257,11 +162,11 @@ MonoBehaviour:
       showPositionOptions: 1
       useTransform: 0
       useSpriteFlip: 1
-    axisParam:
+    targetParam:
       defaultParam:
         type: 80
-        name: axis
-        vector3Value: {x: 0, y: 0, z: 1}
+        name: position
+        vector3Value: {x: 0, y: 0, z: 0}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
         intValue: 0
@@ -312,14 +217,14 @@ MonoBehaviour:
       relativeToProvider: 0
       relativityType: 1
       relativeTo: 0
-      showPositionOptions: 0
+      showPositionOptions: 1
       useTransform: 0
       useSpriteFlip: 1
-    swingAxisParam:
+    limitsParam:
       defaultParam:
-        type: 80
-        name: swingAxis
-        vector3Value: {x: 1, y: 0, z: 0}
+        type: 2
+        name: angleLimits
+        vector3Value: {x: 0, y: 0, z: 0}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
         intValue: 0
@@ -366,22 +271,22 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         objectValue: {fileID: 0}
-      provider: 2
+      provider: 1
       relativeToProvider: 0
-      relativityType: 1
+      relativityType: 0
       relativeTo: 0
       showPositionOptions: 0
       useTransform: 0
       useSpriteFlip: 1
-    secondaryAxisParam:
+    distanceParam:
       defaultParam:
-        type: 80
-        name: secondaryAxis
-        vector3Value: {x: 1, y: 0, z: 0}
+        type: 35
+        name: distance
+        vector3Value: {x: 0, y: 0, z: 0}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
         intValue: 0
-        floatValue: 0
+        floatValue: 0.5
         stringValue: 
         layerValue: 0
         angleLimitsValue:
@@ -424,14 +329,14 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         objectValue: {fileID: 0}
-      provider: 2
+      provider: 1
       relativeToProvider: 0
-      relativityType: 1
+      relativityType: 0
       relativeTo: 0
       showPositionOptions: 0
       useTransform: 0
       useSpriteFlip: 1
---- !u!114 &114502618190623990
+--- !u!114 &114012487112345000
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -445,12 +350,12 @@ MonoBehaviour:
   onAttachOptions:
     rigidbodyBehavior: 4
     positionOptions:
-      behavior: 1
+      behavior: 0
       anchor1Param:
         defaultParam:
           type: 80
           name: position
-          vector3Value: {x: 0, y: 0.5, z: 0}
+          vector3Value: {x: 0, y: 0, z: 0}
           quaternionValue: {x: 0, y: 0, z: 0, w: 0}
           boolValue: 0
           intValue: 0
@@ -497,7 +402,7 @@ MonoBehaviour:
             m_PostInfinity: 2
             m_RotationOrder: 4
           objectValue: {fileID: 0}
-        provider: 1
+        provider: 0
         relativeToProvider: 0
         relativityType: 1
         relativeTo: 0
@@ -508,7 +413,7 @@ MonoBehaviour:
         defaultParam:
           type: 80
           name: position
-          vector3Value: {x: 0, y: -0.5, z: 0}
+          vector3Value: {x: 0, y: 0, z: 0}
           quaternionValue: {x: 0, y: 0, z: 0, w: 0}
           boolValue: 0
           intValue: 0
@@ -555,7 +460,7 @@ MonoBehaviour:
             m_PostInfinity: 2
             m_RotationOrder: 4
           objectValue: {fileID: 0}
-        provider: 2
+        provider: 0
         relativeToProvider: 0
         relativityType: 1
         relativeTo: 0
@@ -572,7 +477,7 @@ MonoBehaviour:
         completeOnCancel: 0
         dynamicTarget: 1
     rotationOptions:
-      behavior: 4
+      behavior: 0
       rotationParam:
         defaultParam:
           type: 65
@@ -624,7 +529,7 @@ MonoBehaviour:
             m_PostInfinity: 2
             m_RotationOrder: 4
           objectValue: {fileID: 0}
-        provider: 2
+        provider: 0
         relativeToProvider: 0
         relativityType: 1
         relativeTo: 0
@@ -856,10 +761,10 @@ MonoBehaviour:
             m_PostInfinity: 2
             m_RotationOrder: 4
           objectValue: {fileID: 0}
-        provider: 1
+        provider: 0
         relativeToProvider: 0
         relativityType: 1
-        relativeTo: 1
+        relativeTo: 0
         showPositionOptions: 0
         useTransform: 0
         useSpriteFlip: 1
@@ -1129,7 +1034,7 @@ MonoBehaviour:
     tweenPositionOptions:
       tweenMethod: 0
       speed: 1
-      duration: 1
+      duration: 5
       easing: 18
       delay: 0
       completeOnCancel: 0

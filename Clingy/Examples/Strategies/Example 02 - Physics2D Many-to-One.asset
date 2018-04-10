@@ -8,18 +8,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 174d2842476a64c3eac691c8cb1c1171, type: 3}
-  m_Name: Examples 04 - Physics2D Chain
+  m_Script: {fileID: 11500000, guid: e7841b6d54db444dc93ff6dc405cfd9e, type: 3}
+  m_Name: Example 02 - Physics2D Many-to-One
   m_EditorClassIdentifier: 
   _selectedCategory: 1
   transitioners:
   - {fileID: 0}
-  - {fileID: 114012487112345000}
-  hideJointsInInspector: 0
+  - {fileID: 114546041333146500}
   jointDescriptions:
-  - anchor: {x: -0.5, y: 0}
-    connectedAnchor: {x: 0.50000006, y: -0.00000008195639}
-    target: {x: 1.6335108, y: -2.5286615}
+  - anchor: {x: 0, y: 0}
+    connectedAnchor: {x: 0, y: 0}
+    target: {x: 1.99, y: -2.9}
     jointType: 5
     useLimits: 0
     limits:
@@ -30,9 +29,9 @@ MonoBehaviour:
       maxMotorTorque: 10000
     useMotor: 0
     distance: 0.5
-    maxDistanceOnly: 1
+    maxDistanceOnly: 0
     autoConfigureConnectedAnchor: 0
-    autoConfigureDistance: 0
+    autoConfigureDistance: 1
     autoConfigureOffset: 1
     maxForce: 10000
     maxTorque: 10000
@@ -40,7 +39,7 @@ MonoBehaviour:
     maxFrictionTorque: 1
     correctionScale: 0.3
     dampingRatio: 0
-    frequency: 5
+    frequency: 1
     enableCollision: 0
     breakForce: Infinity
     breakTorque: Infinity
@@ -50,7 +49,7 @@ MonoBehaviour:
       defaultParam:
         type: 80
         name: position
-        vector3Value: {x: -0.5, y: 0, z: 0}
+        vector3Value: {x: 0, y: 0, z: 0}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
         intValue: 0
@@ -108,7 +107,7 @@ MonoBehaviour:
       defaultParam:
         type: 80
         name: position
-        vector3Value: {x: 0.5, y: 0, z: 0}
+        vector3Value: {x: 0, y: 0, z: 0}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
         intValue: 0
@@ -155,7 +154,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         objectValue: {fileID: 0}
-      provider: 2
+      provider: 0
       relativeToProvider: 0
       relativityType: 1
       relativeTo: 0
@@ -213,7 +212,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         objectValue: {fileID: 0}
-      provider: 2
+      provider: 0
       relativeToProvider: 0
       relativityType: 1
       relativeTo: 0
@@ -281,7 +280,7 @@ MonoBehaviour:
     distanceParam:
       defaultParam:
         type: 35
-        name: distance
+        name: float
         vector3Value: {x: 0, y: 0, z: 0}
         quaternionValue: {x: 0, y: 0, z: 0, w: 0}
         boolValue: 0
@@ -336,7 +335,8 @@ MonoBehaviour:
       showPositionOptions: 0
       useTransform: 0
       useSpriteFlip: 1
---- !u!114 &114012487112345000
+  hideJointsInInspector: 1
+--- !u!114 &114546041333146500
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1034,7 +1034,7 @@ MonoBehaviour:
     tweenPositionOptions:
       tweenMethod: 0
       speed: 1
-      duration: 5
+      duration: 1
       easing: 18
       delay: 0
       completeOnCancel: 0

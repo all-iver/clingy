@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2798e5defd1694061b2e8737281cf0a8, type: 3}
-  m_Name: Examples 02 - Following Many-to-One
+  m_Name: Example 02 - Following Many-to-One
   m_EditorClassIdentifier: 
   _selectedCategory: 1
   transitioners:

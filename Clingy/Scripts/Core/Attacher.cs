@@ -97,7 +97,8 @@ namespace SubC.Attachments {
                 AttachEventType.OnWillDetach, AttachEventType.OnDetached,
                 AttachEventType.OnObjectWillJoin, AttachEventType.OnObjectWillConnect, 
                 AttachEventType.OnObjectConnected, AttachEventType.OnObjectWillDisconnect,
-                AttachEventType.OnObjectWillLeave, AttachEventType.OnObjectLeft
+                AttachEventType.OnObjectWillLeave, AttachEventType.OnObjectLeft,
+                AttachEventType.OnConnected, AttachEventType.OnDisconnected
             };
             public override AttachEventType[] supportedEventTypes { get { return _supportedEventTypes; } }
             public AttachEvent OnWillAttach { get { return GetOrCreateEvent(AttachEventType.OnWillAttach); } }
@@ -114,6 +115,8 @@ namespace SubC.Attachments {
             public AttachEvent OnObjectWillLeave { get { 
                     return GetOrCreateEvent(AttachEventType.OnObjectWillLeave); } }
             public AttachEvent OnObjectLeft { get { return GetOrCreateEvent(AttachEventType.OnObjectLeft); } }
+            public AttachEvent OnConnected { get { return GetOrCreateEvent(AttachEventType.OnConnected); } }
+            public AttachEvent OnDisconnected { get { return GetOrCreateEvent(AttachEventType.OnDisconnected); } }
         }
         [HideInInspector]
         public AttacherEventTrigger events = new AttacherEventTrigger();
